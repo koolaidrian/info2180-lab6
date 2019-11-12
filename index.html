@@ -7,18 +7,17 @@ jquery-3.4.1.js"></script>
   <link rel = "stylesheet" type = "text/css" href = "style.css">
 </head>
 <body>
-
   <div class = "header">
   <h1>AVENGERS CHARACTER SEARCH </h1>
   </div>
 
   <div class = "main">
-    <form action = "superheroes.php">
-      Search by full name or alias <br>
-      <input type = "text" name = "superheroes">
-      <input type = "submit" value = "Search">
+    <form>
+      Search by Full Name or Alias <br>
+      <input class = "inputField" type = "text" name = "superheroes" placeholder= "e.g. Captain America or Steve Rogers" >
+      <!-- <input type = "submit" value = "Search"> -->
     </form>
-    <button type = "button" onclick="list();">Search </button>
+    <button type = "button" onclick="list();"> Search </button>
     <h2> Results </h2>
     <hr>
     <div id = "result">

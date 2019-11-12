@@ -63,12 +63,41 @@ $superheroes = [
   ],
 ];
 
+// $input = $_REQUEST["hero"];
+// echo "input: {$input}" . "<br>";
 ?>
 
 
+<?php
 
+$input = test_input($_GET["query"]);
+
+function test_input($data){
+  $data = trim($data);
+  $data = strip_tags($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+?>
+
+<?php if($input === ""){ ?>
 <ul>
 <?php foreach ($superheroes as $superhero): ?>
-  <li><?= $superhero['alias']; ?></li>
+<li><?= $superhero['alias']; ?></li>
 <?php endforeach; ?>
 </ul>
+<?php }else{
+  for($hero = 0; $hero < count($superheroes); $hero++){
+    if (strtolower($input) === strtolower($superheroes[$hero]['name']) || strtolower($input) === strtolower($superheroes[$hero]['alias'])){ ?>
+      <h3> <?= $superheroes[$hero]['alias']; ?> </h3>
+      <h4> <b>A.K.A</b> <?= $superheroes[$hero]['name']; ?> </h4>
+      <p> <?= $superheroes[$hero]["biography"]; ?> </p>
+    <?php break; }
+
+    if($hero == (count($superheroes) - 1) && (strtolower($input) !== strtolower($superheroes[$hero]['name']) || strtolower($input) !== strtolower($superheroes[$hero]['alias']))){ ?>
+    <span style = "color: red"> Superhero not found </span>
+  <?php }
+    }
+  } ?>
